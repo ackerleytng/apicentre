@@ -5,10 +5,10 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Home from './Home'
+import NotFound from './NotFound'
 import './App.css';
 
-const NotFound = () => <p>Not found</p>;
-const Home = () => <p>Home</p>;
 const ApiDoc = ({ address }) => (
   <iframe
     frameBorder="0"
@@ -30,7 +30,7 @@ const App = () => (
     <BrowserRouter>
       <div id="navbar">
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand as={Link} to="/">Apicentre</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">apicentre</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link as={Link} to="/"></Nav.Link>
             {% for link in links %}
