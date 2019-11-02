@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# apicentre
 
-## Available Scripts
+`apicentre` is a place to host api documentation for different apis.
 
-In the project directory, you can run:
+## Motivation
 
-### `yarn start`
+When apis are designed by multiple teams, they would have their own pages documenting their own apis.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It will be really nice to have a single api documentation app where different teams could submit their api documentation or have the api documentation app pull openapi descriptions for rendering, but we could save engineering time by adopting the technique of [micro-frontends](https://martinfowler.com/articles/micro-frontends.html).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+`apicentre` implements micro-frontends using iframes.
 
-### `yarn test`
+This trades off coherence in the visual design of apicentre, but allows different teams the flexibility of using different styles of api documentation, as long as they can serve a webpage.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Preview
 
-### `yarn build`
+![screenshot](screenshot.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+pip install -r requirements.txt
+```
 
-### `yarn eject`
+Write your links to a yaml file. (Each team should update this file once when they release an api)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+$ cat sample-links.yml
+- path: jsonbin
+  label: jsonbin.io
+  addr: https://jsonbin.io/api-reference
+- path: xgboost
+  label: Xgboost
+  addr: https://xgboost.readthedocs.io/en/latest/python/python_api.html
+$
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Render the yaml file into `App.js`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+./apicentre.py sample-links.yml
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Preview!
 
-## Learn More
+```
+yarn start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Todo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To try: implement a backend for apicentre to proxy requests, so that the individual teams won't even have to specifically unset the following on their pages
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
++ `X-Frame-Options: sameorigin`
++ `X-Frame-Options: deny`
