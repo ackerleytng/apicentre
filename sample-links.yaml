@@ -1,9 +1,10 @@
 # These links have been carefully selected - these sites don't set
 #   X-Frame-Options: sameorigin
+#   X-Frame-Options: deny
 
 - path: jsonbin
   label: jsonbin.io
   addr: https://jsonbin.io/api-reference
-- path: confluent
-  label: Confluent
-  addr: https://docs.confluent.io/current/kafka-rest/api.html
+- path: xgboost
+  label: Xgboost
+  addr: https://xgboost.readthedocs.io/en/latest/python/python_api.html
