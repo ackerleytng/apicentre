@@ -11,3 +11,8 @@ div#navbar {
 div#content {
   flex: 1 1 auto;
 }
+
+iframe#the-iframe {
+  width: 100%;
+  height: 100%;
+}

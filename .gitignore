@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# for pyenv
+.python-version
+
+# src/App.js is generated, for apicentre
+src/App.js

@@ -12,7 +12,6 @@ const Home = () => <p>Home</p>;
 const ApiDoc = ({ address }) => (
   <iframe
     frameBorder="0"
-    style={{width: '100%', height: '100%'}}
     title="the-iframe"
     id="the-iframe"
     src={address}
@@ -34,14 +33,18 @@ const App = () => (
           <Navbar.Brand as={Link} to="/">Apicentre</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link as={Link} to="/"></Nav.Link>
-            <Nav.Link as={Link} to="/apple">Apple</Nav.Link>
+            {% for link in links %}
+            <Nav.Link as={Link} to="/{{ link.path }}">{{ link.label }}</Nav.Link>
+            {% endfor %}
           </Nav>
         </Navbar>
       </div>
       <div id="content">
         <Switch>
           <Route exact path='/' component={Home} />
-          <DocRoute exact path="/apple" address="https://pyjwt.readthedocs.io/en/latest/usage.html" />
+          {% for link in links %}
+          <DocRoute exact path="/{{ link.path }}" address="{{ link.addr }}" />
+          {% endfor %}
           <Route component={NotFound} />
         </Switch>
       </div>
