@@ -1,6 +1,6 @@
 # apicentre
 
-`apicentre` is a place to host api documentation for different apis.
+`apicentre` (read: epicentre) is a place to host api documentation for different apis.
 
 ## Motivation
 
